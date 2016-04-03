@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Train your Brain</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/angular.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,7 +17,11 @@
             <table class="table table-bordered grid">
                 <tr ng-repeat="row in ctrl.grid">
                     <td ng-repeat="cell in row track by $index">
-{{cell.isMarked}}
+                        <button type="button"
+                            ng-class="{'btn btn-primary btn-lg': cell.isMarked,
+                                       'btn btn-default btn-lg': !cell.isMarked }">
+                            <span ng-class="{'glyphicon glyphicon-unchecked': !cell.isMarked, 'glyphicon glyphicon-ok': cell.isMarked}"></span>
+                        </button>
                     </td>
                 </tr>
             </table>
