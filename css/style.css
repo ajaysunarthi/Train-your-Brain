@@ -1,4 +1,12 @@
-.main{
-	width:700px;
-	text-align: center;
+.main {
+  padding: 40px 15px;
+  text-align: center;
+  max-width: 730px;
+
+}
+
+.main .table {
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
