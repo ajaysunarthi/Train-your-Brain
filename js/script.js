@@ -5,26 +5,49 @@ control.$inject = ['$scope'];
 
 function control($scope) {
     var vm = this;
+    vm.level = 1;
+    vm.toBeFound = 0;
+    vm.found = 0;
+    vm.initRows = 3;
+    vm.initCols = 3;
+    vm.maxRows = 6;
+    vm.maxCols = 6;
+    vm.rows = vm.initRows;
+    vm.cols = vm.initCols;
+    vm.showGrid = true;
+    vm.disableButton = false;
     vm.grid = new Array();
 
-    vm.firstLevel = function(argument) {
+    vm.beginLevel = function() {
+        vm.revealGrid();
+        window.setTimeout(function() {
+            vm.$apply(vm.concealGrid);
+        }, 4000);
+    };
 
-            vm.row = 4;
-            vm.col = 4;
+    vm.revealGrid = function() {
 
-            for (var i = 0; i < vm.row; i++) {
-                vm.grid[i] = new Array();
-                for (var j = 0; j < vm.col; j++) {
-                    var isMarked = Math.random() >= 0.6;
-                    vm.grid[i][j] = {
-                        "isMarked":isMarked
-                    };
+    };
 
-                }
+    vm.concealGrid = function() {
+
+    };
+
+    vm.newGrid = function() {
+        vm.disableButton = false;
+        vm.toBeFound = 0;
+        for (var i = 0; i < vm.rows; i++) {
+            vm.grid[i] = new Array();
+            for (var j = 0; j < vm.cols; j++) {
+                var isMarked = Math.random() >= 0.6;
+                if (isMarked) { vm.toBeFound++ }
+                vm.grid[i][j] = { "marked": isMarked, "chosen": false, "win": false, "lose": false, "disabled": false };
 
             }
-};
 
-vm.firstLevel();
+        }
+    };
+
+    vm.newGrid();
 
 }
