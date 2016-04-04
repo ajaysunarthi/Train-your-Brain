@@ -27,7 +27,7 @@ function control($scope) {
         }, 4000);
     };
 
-// new grid is starting function for every level sets the grid elements
+    // new grid is starting function for every level sets the grid elements
     vm.newGrid = function() {
         vm.disableButton = false;
         vm.toBeFound = 0;
@@ -36,11 +36,11 @@ function control($scope) {
             for (var j = 0; j < vm.cols; j++) {
                 var isMarked = Math.random() >= 0.6;
                 if (isMarked) { vm.toBeFound++ }
-// fill grid elements disabled to allow click only once
-  // win to establish that the cell contains right value
-    // similarly for lose.. ohh yeah cool english
-      // is marked is to know whether the cell is filled or not
-        // 'chosen' to know if its the right choice baby                      
+                // fill grid elements disabled to allow click only once
+                // win to establish that the cell contains right value
+                // similarly for lose.. ohh yeah cool english
+                // is marked is to know whether the cell is filled or not
+                // 'chosen' to know if its the right choice baby                      
                 vm.grid[i][j] = { "marked": isMarked, "chosen": false, "win": false, "lose": false, "disabled": false };
 
             }
@@ -55,9 +55,9 @@ function control($scope) {
             var row = vm.grid[i];
             for (var j = 0; j < row.length; j++) {
                 var cell = row[j];
-// Make every cell unclickable while the grid is being revealed                
+                // Make every cell unclickable while the grid is being revealed                
                 cell.disabled = true;
-// All those are marked assign their 'win' as true                
+                // All those are marked assign their 'win' as true                
                 if (cell.marked) {
                     cell.win = true;
                 }
@@ -65,7 +65,7 @@ function control($scope) {
         }
         vm.showGrid = false;
     };
-// Make the cells clickable when the grid again returns to default i.e. after reveal
+    // Make the cells clickable when the grid again returns to default i.e. after reveal
     vm.concealGrid = function() {
         for (var i = 0; i < vm.grid.length; i++) {
             var row = vm.grid[i];
@@ -81,9 +81,25 @@ function control($scope) {
         $scope.showGrid = true;
     };
 
-vm.checkCell = function (cell) {
-console.log(cell);        
-}
+    vm.checkCell = function(cell) {
+
+        if (!cell.chosen) {
+            cell.chosen = true;
+            if (cell.marked) {
+                cell.win = true;
+                cell.lose = false;                
+                vm.found++;
+            }
+
+            else {
+                cell.win = false;
+                cell.lose = true;
+                $scope.wrong++;}
+
+        }
+
+        console.log(cell);
+    }
 
     vm.newGrid();
 
