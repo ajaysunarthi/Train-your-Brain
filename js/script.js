@@ -87,18 +87,30 @@ function control($scope) {
             cell.chosen = true;
             if (cell.marked) {
                 cell.win = true;
-                cell.lose = false;                
+                cell.lose = false;
                 vm.found++;
-            }
-
-            else {
+            } else {
                 cell.win = false;
                 cell.lose = true;
-                }
+            }
 
         }
 
-        console.log(vm.found,vm.toBeFound);
+        if (vm.found == vm.toBeFound) {
+            if (vm.wrong == 0) {
+            // no mistakes
+            // go to next level
+            }
+
+            else {
+                // Ohh you made some mistakes (O_o)
+                // repeat this level
+            }
+        }
+
+
+
+        console.log(vm.found, vm.toBeFound);
     }
 
     vm.newGrid();
