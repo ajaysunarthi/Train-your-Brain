@@ -13,6 +13,7 @@ function control($scope) {
     vm.initCols = 3;
     vm.maxRows = 6;
     vm.maxCols = 6;
+    vm.wrong = 0;
     vm.rows = vm.initRows;
     vm.cols = vm.initCols;
     vm.showGrid = true;
@@ -92,6 +93,7 @@ function control($scope) {
             } else {
                 cell.win = false;
                 cell.lose = true;
+                vm.wrong++;
             }
 
         }
@@ -100,19 +102,24 @@ function control($scope) {
             if (vm.wrong == 0) {
             // no mistakes
             // go to next level
+            vm.nextLevel();
             }
 
             else {
                 // Ohh you made some mistakes (O_o)
                 // repeat this level
+                vm.sameLevel();
             }
         }
-
-
-
-        console.log(vm.found, vm.toBeFound);
+        console.log(vm.found, vm.toBeFound, vm.wrong);
     }
 
+vm.nextLevel = function () {
+   console.log('create next level');   
+};
+vm.sameLevel = function () {
+   console.log('repeat same level');    
+};
     vm.newGrid();
 
 }
