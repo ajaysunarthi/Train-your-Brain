@@ -131,14 +131,15 @@ function control($scope) {
         } else {
             vm.cols++;
         }
-
         vm.level++;
         vm.newGrid();
     };
+
     vm.sameLevel = function() {
         // to burn it back to ground
         vm.grid = new Array();
         vm.found = 0;
+        vm.wrong = 0;
         vm.toBeFound = 0;
         vm.newGrid();    
     };
