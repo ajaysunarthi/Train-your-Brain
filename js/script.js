@@ -94,11 +94,11 @@ function control($scope) {
             else {
                 cell.win = false;
                 cell.lose = true;
-                $scope.wrong++;}
+                }
 
         }
 
-        console.log(cell);
+        console.log(vm.found,vm.toBeFound);
     }
 
     vm.newGrid();
