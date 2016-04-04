@@ -8,19 +8,21 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body ng-app="gameApp" ng-controller="ctrl as ctrl" >
+<body ng-app="gameApp" ng-controller="ctrl as ctrl">
     <div class="container main">
         <h1>Train your brain with this game</h1>
         <p>Game description .....</p>
         <button type="button" class="btn btn-primary" ng-click="ctrl.beginLevel()" ng-disabled=" ctrl.disableButton ">Show</button>
         <div class="row ">
-            <table class="table table-bordered grid " >
+            <table class="table table-bordered grid ">
                 <tr ng-repeat="row in ctrl.grid ">
                     <td ng-repeat="cell in row track by $index ">
                         <button type="button " 
-                            ng-class="{'btn btn-primary btn-lg': cell.win,
+                        ng-class="{'btn btn-primary btn-lg': cell.win,
                                        'btn btn-danger btn-lg': cell.lose,
-                                       'btn btn-default btn-lg': !cell.win && !cell.lose}">
+                                       'btn btn-default btn-lg': !cell.win && !cell.lose}" 
+                        ng-click="ctrl.checkCell(cell)">
+
                             <span ng-class="{'glyphicon glyphicon-unchecked': !cell.chosen, 'glyphicon glyphicon-ok': cell.win, 'glyphicon glyphicon-remove': cell.lose}"></span>
                         </button>
                     </td>

@@ -48,6 +48,7 @@ function control($scope) {
         }
     };
 
+
     vm.revealGrid = function() {
         vm.disableButton = true;
         for (var i = 0; i < vm.grid.length; i++) {
@@ -80,6 +81,9 @@ function control($scope) {
         $scope.showGrid = true;
     };
 
+vm.checkCell = function (cell) {
+console.log(cell);        
+}
 
     vm.newGrid();
 
