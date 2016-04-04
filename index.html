@@ -11,14 +11,18 @@
 <body ng-app="gameApp" ng-controller="ctrl as ctrl">
     <div class="container main">
         <h1>Train your brain with this game</h1>
-        <p>Game description .....</p>
-        <p>Level:{{ctrl.level}} Score={{ctrl.score}} Total : {{ctrl.toBeFound}} Found:{{ctrl.found}}</p>
+        <p>On each level a grid will be shown to you.You have to remember the right configuration of it.
+        <br>Right configuration of the grid will be visible for 4 seconds.Then you can resume the play.</p>
+
+        <h5>Use you brains, mark the correct ones and complete the game.Have fun.</h5>
+        <h4>Level:{{ctrl.level}} &emsp;Score={{ctrl.score}} &emsp;Left : {{ctrl.toBeFound-ctrl.found}}</h4>
         <button type="button" class="btn btn-primary" ng-click="ctrl.beginLevel()" ng-disabled=" ctrl.disableButton ">Show</button>
         <div class="row ">
-            <table class="table table-bordered grid ">
+            <table class="table table-bordered grid " >
                 <tr ng-repeat="row in ctrl.grid ">
                     <td ng-repeat="cell in row track by $index ">
-                        <button type="button " 
+                        <button type="button " ng-disabled="ctrl.waitTillReveal" ng-disabled="cell.disabled"
+
                         ng-class="{'btn btn-primary btn-lg': cell.win,
                                        'btn btn-danger btn-lg': cell.lose,
                                        'btn btn-default btn-lg': !cell.win && !cell.lose}" 

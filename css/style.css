@@ -16,3 +16,7 @@
 	margin-top: 30px;
 	outline: none;
 }
+
+.disabled {
+    pointer-events: auto;
+}

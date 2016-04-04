@@ -8,6 +8,7 @@ function control($scope) {
     var vm = this;
     vm.level = 1;
     vm.score = 0;
+    vm.waitTillReveal = true;
     vm.scoreBonus = 10;
     vm.scorePenalty = 20;
     vm.toBeFound = 0;
@@ -33,6 +34,7 @@ function control($scope) {
 
     // new grid is starting function for every level sets the grid elements
     vm.newGrid = function() {
+        vm.waitTillReveal = true;
         vm.disableButton = false;
         vm.toBeFound = 0;
         for (var i = 0; i < vm.rows; i++) {
@@ -71,6 +73,7 @@ function control($scope) {
     };
     // Make the cells clickable when the grid again returns to default i.e. after reveal
     vm.concealGrid = function() {
+        vm.waitTillReveal=false;
         for (var i = 0; i < vm.grid.length; i++) {
             var row = vm.grid[i];
             for (var j = 0; j < row.length; j++) {
