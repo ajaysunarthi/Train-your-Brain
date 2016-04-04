@@ -128,7 +128,11 @@ function control($scope) {
         vm.newGrid();
     };
     vm.sameLevel = function() {
-        // to burn it back to ground    
+        // to burn it back to ground
+        vm.grid = new Array();
+        vm.found = 0;
+        vm.toBeFound = 0;
+        vm.newGrid();    
     };
     vm.newGrid();
 
