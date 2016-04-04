@@ -7,6 +7,9 @@ function control($scope) {
     // defining variables to register execution
     var vm = this;
     vm.level = 1;
+    vm.score = 0;
+    vm.scoreBonus = 10;
+    vm.scorePenalty = 20;
     vm.toBeFound = 0;
     vm.found = 0;
     vm.initRows = 3;
@@ -76,6 +79,7 @@ function control($scope) {
                 if (!cell.chosen) {
                     cell.win = false;
                     cell.lose = false;
+
                 }
             }
         }
@@ -90,10 +94,12 @@ function control($scope) {
                 cell.win = true;
                 cell.lose = false;
                 vm.found++;
+                vm.score += vm.scoreBonus;
             } else {
                 cell.win = false;
                 cell.lose = true;
                 vm.wrong++;
+                vm.score -= vm.scorePenalty;
             }
 
         }
@@ -109,7 +115,6 @@ function control($scope) {
                 vm.sameLevel();
             }
         }
-        console.log(vm.found, vm.toBeFound, vm.wrong);
     }
 
     vm.nextLevel = function() {
