@@ -1,4 +1,5 @@
-angular.module('gameApp', [])
+;(function(){
+    angular.module('gameApp', [])
     .controller('ctrl', control);
 
 control.$inject = ['$scope'];
@@ -73,7 +74,7 @@ function control($scope) {
     };
     // Make the cells clickable when the grid again returns to default i.e. after reveal
     vm.concealGrid = function() {
-        vm.waitTillReveal=false;
+        vm.waitTillReveal = false;
         for (var i = 0; i < vm.grid.length; i++) {
             var row = vm.grid[i];
             for (var j = 0; j < row.length; j++) {
@@ -125,11 +126,22 @@ function control($scope) {
         vm.grid = new Array();
         vm.found = 0;
         vm.toBeFound = 0;
-
-        if (Math.random() >= 0.5) {
-            vm.rows++;
+        if ((vm.rows == vm.maxRows) && (vm.cols == vm.maxCols)) {
+            alert("You won the game!");
+            vm.reset();
         } else {
-            vm.cols++;
+
+            if ((vm.rows == vm.maxRows) && !(vm.cols == vm.maxCols)) {
+                vm.cols++;
+            } else if (!(vm.rows == vm.maxRows) && (vm.cols == vm.maxCols)) {
+                vm.rows++;
+            } else {
+                if (Math.random() >= 0.5) {
+                    vm.rows++;
+                } else {
+                    vm.cols++;
+                }
+            }
         }
         vm.level++;
         vm.newGrid();
@@ -141,8 +153,18 @@ function control($scope) {
         vm.found = 0;
         vm.wrong = 0;
         vm.toBeFound = 0;
-        vm.newGrid();    
+        vm.newGrid();
+    };
+
+    vm.reset = function() {
+        vm.cols = 3;
+        vm.rows = 3;
+        vm.level = 1;
+        vm.score = 0;
+        vm.newGrid();
     };
     vm.newGrid();
 
 }
+
+})();
