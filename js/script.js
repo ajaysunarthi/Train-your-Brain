@@ -100,12 +100,10 @@ function control($scope) {
 
         if (vm.found == vm.toBeFound) {
             if (vm.wrong == 0) {
-            // no mistakes
-            // go to next level
-            vm.nextLevel();
-            }
-
-            else {
+                // no mistakes
+                // go to next level
+                vm.nextLevel();
+            } else {
                 // Ohh you made some mistakes (O_o)
                 // repeat this level
                 vm.sameLevel();
@@ -114,12 +112,24 @@ function control($scope) {
         console.log(vm.found, vm.toBeFound, vm.wrong);
     }
 
-vm.nextLevel = function () {
-   console.log('create next level');   
-};
-vm.sameLevel = function () {
-   console.log('repeat same level');    
-};
+    vm.nextLevel = function() {
+        // We are bulding it up OOoo ..
+        vm.grid = new Array();
+        vm.found = 0;
+        vm.toBeFound = 0;
+
+        if (Math.random() >= 0.5) {
+            vm.rows++;
+        } else {
+            vm.cols++;
+        }
+
+        vm.level++;
+        vm.newGrid();
+    };
+    vm.sameLevel = function() {
+        // to burn it back to ground    
+    };
     vm.newGrid();
 
 }
